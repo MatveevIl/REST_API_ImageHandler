@@ -1,0 +1,219 @@
+﻿  ImageHandlerCrow.cpp
+  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
+  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
+  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
+  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_parser_merged.h(587,32): warning C4244: =: преобразование "__int64" в "unsigned long", возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_parser_merged.h(607,32): warning C4244: =: преобразование "__int64" в "unsigned long", возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\json.h(1267,35): warning C4267: аргумент: преобразование из "size_t" в "uint32_t"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\json.h(1749,32): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(180,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(199,48): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(201,53): warning C4267: аргумент: преобразование из "size_t" в "_Ty"; возможна потеря данных
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(201,53): warning C4267:         with
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(201,53): warning C4267:         [
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(201,53): warning C4267:             _Ty=int
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(201,53): warning C4267:         ]
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(302,94): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(450,54): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(461,54): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(479,54): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\mustache.h(490,54): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(782,74): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(782,74): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(786,74): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(786,74): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(790,74): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(790,74): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(794,74): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(794,74): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(798,74): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(798,74): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(802,74): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(802,74): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(808,66): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(808,66): warning C4566: символ, представленный универсальным именем символа "\u279D", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(819,31): warning C4566: символ, представленный универсальным именем символа "\u2514", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(819,31): warning C4566: символ, представленный универсальным именем символа "\u2799", невозможно представить в текущей кодовой странице (1251)
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(882,70): warning C4244: аргумент: преобразование "__int64" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(903,70): warning C4244: аргумент: преобразование "__int64" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(924,70): warning C4244: аргумент: преобразование "__int64" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(946,61): warning C4267: аргумент: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(962,61): warning C4267: аргумент: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(977,61): warning C4267: аргумент: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1032,53): warning C4267: +=: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1043,45): warning C4267: +=: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1296,118): warning C4267: аргумент: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1296,87): warning C4267: аргумент: преобразование из "size_t" в "uint16_t"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1302,135): warning C4267: аргумент: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1363,111): warning C4267: аргумент: преобразование из "size_t" в "unsigned int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\routing.h(1508,24): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(237,37): warning C4267: =: преобразование из "size_t" в "uint16_t"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+      D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(237,37):
+      контекст создания экземпляра шаблона (сначала самый старый)
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\ImageHandlerCrow.cpp(170,21):
+          выполняется компиляция ссылки на экземпляр класс шаблон функции "crow::Crow<>"
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\app.h(501,14):
+          во время компиляции функции-члена класс шаблон "void crow::Crow<>::run(void)"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\ImageHandlerCrow.cpp(214,40):
+              см. первую ссылку на "crow::Crow<>::run" в "main"
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\app.h(534,26):
+          выполняется компиляция ссылки на экземпляр класс шаблон функции "crow::Server<crow::Crow<>,crow::SocketAdaptor>"
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(226,18):
+          во время компиляции функции-члена класс шаблон "uint16_t crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_context_idx(void)"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(246,38):
+              см. первую ссылку на "crow::Server<crow::Crow<>,crow::SocketAdaptor>::pick_io_context_idx" в "crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(173,22):
+              см. первую ссылку на "crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept" в "crow::Server<crow::Crow<>,crow::SocketAdaptor>::run"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\app.h(540,29):
+              см. первую ссылку на "crow::Server<crow::Crow<>,crow::SocketAdaptor>::run" в "crow::Crow<>::run"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\ImageHandlerCrow.cpp(214,40):
+              см. первую ссылку на "crow::Crow<>::run" в "main"
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_connection.h(479,75): warning C4244: аргумент: преобразование "unsigned __int64" в "int", возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+      D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_connection.h(479,75):
+      контекст создания экземпляра шаблона (сначала самый старый)
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(242,14):
+          во время компиляции функции-члена класс шаблон "void crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept(void)"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(173,22):
+              см. первую ссылку на "crow::Server<crow::Crow<>,crow::SocketAdaptor>::do_accept" в "crow::Server<crow::Crow<>,crow::SocketAdaptor>::run"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\app.h(540,29):
+              см. первую ссылку на "crow::Server<crow::Crow<>,crow::SocketAdaptor>::run" в "crow::Crow<>::run"
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\ImageHandlerCrow.cpp(214,40):
+              см. первую ссылку на "crow::Crow<>::run" в "main"
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_server.h(256,19):
+          выполняется компиляция ссылки на экземпляр класс шаблон функции "crow::Connection<Adaptor,Handler>"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_connection.h(470,14):
+          во время компиляции функции-члена класс шаблон "void crow::Connection<Adaptor,Handler>::do_read(void)"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_connection.h(101,34):
+              см. первую ссылку на "crow::Connection<Adaptor,Handler>::do_read" в "crow::Connection<Adaptor,Handler>::start::<lambda_1>::operator ()"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+  
+D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\parser.h(127,25): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "ImageHandlerCrow.cpp")
+      D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\parser.h(127,25):
+      контекст создания экземпляра шаблона (сначала самый старый)
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_connection.h(597,32):
+          выполняется компиляция ссылки на экземпляр класс шаблон функции "crow::HTTPParser<crow::Connection<Adaptor,Handler>>"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+          D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\parser.h(111,14):
+          во время компиляции функции-члена класс шаблон "bool crow::HTTPParser<crow::Connection<Adaptor,Handler>>::feed(const char *,int)"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+              D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\include\crow\http_connection.h(479,32):
+              см. первую ссылку на "crow::HTTPParser<crow::Connection<Adaptor,Handler>>::feed" в "crow::Connection<Adaptor,Handler>::do_read::<lambda_1>::operator ()"
+          with
+          [
+              Adaptor=crow::SocketAdaptor,
+              Handler=crow::Crow<>
+          ]
+  
+ImageHandlerCrow.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/INCREMENTAL:NO"
+  ImageHandlerCrow.vcxproj -> D:\Новая папка\ВУЗ\Практика\ImageHandlerCrow\x64\Debug\ImageHandlerCrow.exe
+  "pwsh.exe" не является внутренней или внешней
+  командой, исполняемой программой или пакетным файлом.

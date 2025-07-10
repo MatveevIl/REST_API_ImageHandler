@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  crowtest:
+    container_name: image_handler
+    build: ./
+    depends_on:
+      db:
+        condition: service_healthy
+    ports: 
+      - "8080:8080"
+  db:
+    container_name: handler_db
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: handler_db
+      POSTGRES_INITDB_ARGS: "--auth-host=trust"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./initialization.sql:/docker-entrypoint-initdb.d/initialization.sql  
+    ports:
+      - "5432:5432"
+    restart: always
+    healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U user -d handler_db"]
+          interval: 5s
+          timeout: 5s
+          retries: 5
+volumes:
+  db_data:
