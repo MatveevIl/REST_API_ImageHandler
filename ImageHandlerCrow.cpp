@@ -1,7 +1,11 @@
 ﻿#include <opencv2/opencv.hpp>
+#include <opencv2/dnn.hpp>
+#include <opencv2/imgproc.hpp>
+
 #include "crow.h"
 #include "nlohmann/json.hpp"
 #include <pqxx/pqxx>
+
 #include <iostream>
 #include <stdexcept>
 #include <filesystem>
@@ -13,28 +17,39 @@ using namespace std;
 using json = nlohmann::json; 
 namespace fs = std::filesystem;
 
+string fdmodel_path;
 
-CascadeClassifier face_cascade; //объявляем объект стандартного для опенСВ класса CascadeClassifier для обнаружения объектов
+/*CascadeClassifier face_cascade; //объявляем объект стандартного для опенСВ класса CascadeClassifier для обнаружения объектов
 CascadeClassifier face_cascade2;
-CascadeClassifier face_cascade3;
+CascadeClassifier face_cascade3;*/
 
-bool cascade_loaded = false;
+//bool cascade_loaded = false;
 
-bool loadCascade(CascadeClassifier& cascade, const string& filename) {
+/*bool loadCascade(CascadeClassifier& cascade, const string& filename) {
     if (!cascade.load(filename)) {
         cout << "Не удалось загрузить классификатор каскадов Хаара" << endl;
         return false;
     }
     cout << "Удалось загрузить классификатор каскадов Хаара" << endl;
     return true;
-}
-bool loadCascades() {
+}*/
+/*bool loadCascades() {
     bool all_loaded = true;
     all_loaded &= loadCascade(face_cascade, "haarcascades/haarcascade_frontalface_default.xml");
     all_loaded &= loadCascade(face_cascade2, "haarcascades/haarcascade_frontalface_alt.xml");
     all_loaded &= loadCascade(face_cascade3, "haarcascades/haarcascade_frontalface_alt2.xml");
     cascade_loaded = all_loaded;
     return all_loaded;
+}*/
+
+bool loadModel() {
+    fdmodel_path = "dnn_model/face_detection_yunet_2023mar.onnx";
+    if (fdmodel_path.empty()) {
+        cout << "Модель для обнаружения лиц не загружена" << endl;
+        return false;
+    }
+    cout << "Модель для обнаружения лиц загружена" << endl;
+    return true;
 }
 
 std::vector <char> read_binary_file(const std::string& filename) {
@@ -115,9 +130,52 @@ Mat loadImage(const string& file_path) {
     }
 }
 
+void facefinder(pqxx::connection& C, const string& file_path) {
+    string output_path;
+    float scale = 1.0;
+    float scoreThreshold = 0.9;
+    float nmsThreshold = 0.3;
+    int topK = 5000;
+
+    Mat image = loadImage(file_path);
+
+    int imageWidth = int(image.cols * scale);
+    int imageHeight = int(image.rows * scale);
+    resize(image, image, Size(imageWidth, imageHeight));
+
+    Ptr<FaceDetectorYN> detector = FaceDetectorYN::create(fdmodel_path, "", Size(320, 320), scoreThreshold, nmsThreshold, topK);
+
+    detector->setInputSize(image.size());
+
+    // Detect faces
+    Mat faces;
+    detector->detect(image, faces);
+    
+    int thick = 3;
+
+    for (int i = 0; i < faces.rows; i++) {
+        rectangle(image, Rect2i(int(faces.at<float>(i, 0)), int(faces.at<float>(i, 1)), int(faces.at<float>(i, 2)), int(faces.at<float>(i, 3))), Scalar(255, 0, 0), thick);
+    }
+
+    fs::path input_path(file_path);
+    std::string output_filename = input_path.filename().string();
+    output_path = saveImage(image, output_filename, "faces");
+
+    std::vector <char> source = read_binary_file(file_path);
+    std::vector <char> result = read_binary_file(output_path);
+
+    try {
+        inserting(C, "finding", source, file_path, {}, {}, result, output_path, 0, 0);
+    }
+    catch (const std::exception& e) {
+        throw;
+    }
 
 
-void face_finder(const string& file_path, pqxx::connection& C) {
+}
+
+
+/*void face_finder(const string& file_path, pqxx::connection& C) {
     string output_path;
     Mat image = loadImage(file_path);
     if (image.empty()) return;
@@ -136,7 +194,7 @@ void face_finder(const string& file_path, pqxx::connection& C) {
         второй параметр 2-6 - параметр, определяющий, сколько прямоугольников дб рядом, чтоб кандидат стал лицом, чем больше значение - тем меньше ложных срабатываний, но можно пропустить лица
         0 - других флагов нет
         CASCADE_SCALE_IMAGE - размер изображения масштабируем во время поиска
-        Сайз - минимальный размер лица для определения*/
+        Сайз - минимальный размер лица для определения
         face_cascade2.detectMultiScale(greyImage, faces2, 1.05, 5, 0, Size(30, 30));
         face_cascade3.detectMultiScale(greyImage, faces3, 1.04, 4, 0, Size(25, 25));
     }
@@ -173,7 +231,7 @@ void face_finder(const string& file_path, pqxx::connection& C) {
         throw;
     }
 
-}
+}*/
 
 void image_compress(const string& file_path, pqxx::connection& C) {
     string output_path;
@@ -235,8 +293,11 @@ int main()
     std::cout << "Привет Мир!\n";
     
     
-    if (!loadCascades()) {
+    /*if (!loadCascades()) {
         return 1; 
+    }*/
+    if (!loadModel()) {
+        return 1;
     }
 
     pqxx::connection C("host=db port=5432 dbname=handler_db user=user password=pass"); // Объявляем C как объект
@@ -277,7 +338,8 @@ int main()
                 std::cout << "merge_value: " << merge_value << std::endl;
 
                 if (operation == "Finding") {
-                    face_finder(file_path.string(), C);
+                    //face_finder(file_path.string(), C);
+                    facefinder(C, file_path.string());
                 }
                 else if (operation == "Resize") {
                     image_compress(file_path.string(), C);
@@ -291,7 +353,6 @@ int main()
                 json response_data = "Succes";
                 crow::response res;
                 res.set_header("Content-Type", "application/json; charset=utf-8");
-                //res.set_header("Content-Type", "text/plain; charset=utf-8");
                 std::cout << response_data.dump() << std::endl;
                 res.write(response_data.dump());
                 return res;
