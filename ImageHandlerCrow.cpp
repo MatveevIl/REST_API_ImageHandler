@@ -19,28 +19,6 @@ namespace fs = std::filesystem;
 
 string fdmodel_path;
 
-/*CascadeClassifier face_cascade; //объявляем объект стандартного для опенСВ класса CascadeClassifier для обнаружения объектов
-CascadeClassifier face_cascade2;
-CascadeClassifier face_cascade3;*/
-
-//bool cascade_loaded = false;
-
-/*bool loadCascade(CascadeClassifier& cascade, const string& filename) {
-    if (!cascade.load(filename)) {
-        cout << "Не удалось загрузить классификатор каскадов Хаара" << endl;
-        return false;
-    }
-    cout << "Удалось загрузить классификатор каскадов Хаара" << endl;
-    return true;
-}*/
-/*bool loadCascades() {
-    bool all_loaded = true;
-    all_loaded &= loadCascade(face_cascade, "haarcascades/haarcascade_frontalface_default.xml");
-    all_loaded &= loadCascade(face_cascade2, "haarcascades/haarcascade_frontalface_alt.xml");
-    all_loaded &= loadCascade(face_cascade3, "haarcascades/haarcascade_frontalface_alt2.xml");
-    cascade_loaded = all_loaded;
-    return all_loaded;
-}*/
 
 bool loadModel() {
     fdmodel_path = "dnn_model/face_detection_yunet_2023mar.onnx";
@@ -138,9 +116,17 @@ void facefinder(pqxx::connection& C, const string& file_path) {
 
     Mat image = loadImage(file_path);
 
-    int thick = image.cols / 640;
+    int thick;
 
-    int core = (image.cols / 19) | 1;
+    if (image.rows >= 1920){
+        thick = image.rows / 640;
+    }else thick = 3;
+
+    int core;
+
+    if (image.rows >= 1920){
+        core = (image.rows / 19) | 1;
+    }else core = 101;
 
     Ptr<FaceDetectorYN> detector = FaceDetectorYN::create(fdmodel_path, "", Size(320, 320), scoreThreshold, nmsThreshold, topK);
 
@@ -173,65 +159,6 @@ void facefinder(pqxx::connection& C, const string& file_path) {
 
 
 }
-
-
-/*void face_finder(const string& file_path, pqxx::connection& C) {
-    string output_path;
-    Mat image = loadImage(file_path);
-    if (image.empty()) return;
-    Mat greyImage; //Поиск объектов с помощью каскадов Хаара работает лучше с серым изображением
-    cvtColor(image, greyImage, COLOR_BGR2GRAY);
-    std::vector<Rect> faces; //объявляем faces = вектор(массив, изменяющийся динамически)  для хранения прямоугольников = Rect
-    std::vector<Rect> faces2;
-    std::vector<Rect> faces3;
-    {
-        if (!cascade_loaded) {
-            std::cerr << "Ошибка. Не загружены каскады" << std::endl;
-        }
-        face_cascade.detectMultiScale(greyImage, faces, 1.05, 6, 0, Size(35, 40));
-        /*функция для обнаружения лиц(входное изображение; вектор, куда сохраняем найденные лица;
-        первый параметр в диапазоне 1,05-1,4 - параметр масштабирования, чем меньше - тем точнее, но дольше работает;
-        второй параметр 2-6 - параметр, определяющий, сколько прямоугольников дб рядом, чтоб кандидат стал лицом, чем больше значение - тем меньше ложных срабатываний, но можно пропустить лица
-        0 - других флагов нет
-        CASCADE_SCALE_IMAGE - размер изображения масштабируем во время поиска
-        Сайз - минимальный размер лица для определения
-        face_cascade2.detectMultiScale(greyImage, faces2, 1.05, 5, 0, Size(30, 30));
-        face_cascade3.detectMultiScale(greyImage, faces3, 1.04, 4, 0, Size(25, 25));
-    }
-    std::vector<Rect> final_face;
-    for (size_t i = 0; i < faces.size(); i++) {
-        for (size_t j = 0; j < faces2.size(); j++) {
-            for (size_t y = 0; y < faces3.size(); y++) {
-
-                Rect intersection = faces[i] & faces2[j] & faces3[y];
-                if (intersection.area() > 0) {
-                    final_face.push_back(faces[i]);
-                    break;
-                }
-            }
-        }
-    }
-    for (size_t i = 0; i < final_face.size(); i++) {
-        rectangle(image, final_face[i], Scalar(255, 0, 0), 2);
-        Mat faceROI = image(final_face[i]); //создаёт объект, типа Mat, являющийся регионом интереса
-        GaussianBlur(faceROI, faceROI, Size(101, 101), 0); //фэйсРои - лицо входящее, фэйсРОИ - лицо выходящее; размер ядра Гаусса и отклонение по Х и У - 0(стандартное)
-        faceROI.copyTo(image(final_face[i])); //копирует размытое на исходное изображение
-    }
-    fs::path input_path(file_path);
-    std::string output_filename = input_path.filename().string();
-    output_path = saveImage(image, output_filename, "faces");
-
-    std::vector <char> source = read_binary_file(file_path);
-    std::vector <char> result = read_binary_file(output_path);
-
-    try {
-        inserting(C, "finding", source, file_path, {}, {}, result, output_path, 0, final_face.size());
-    }
-    catch (const std::exception& e) {
-        throw;
-    }
-
-}*/
 
 void image_compress(const string& file_path, pqxx::connection& C) {
     string output_path;
@@ -292,10 +219,6 @@ int main()
 
     std::cout << "Привет Мир!\n";
     
-    
-    /*if (!loadCascades()) {
-        return 1; 
-    }*/
     if (!loadModel()) {
         return 1;
     }
@@ -338,7 +261,6 @@ int main()
                 std::cout << "merge_value: " << merge_value << std::endl;
 
                 if (operation == "Finding") {
-                    //face_finder(file_path.string(), C);
                     facefinder(C, file_path.string());
                 }
                 else if (operation == "Resize") {

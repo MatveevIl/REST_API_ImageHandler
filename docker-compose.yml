@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  crowtest:
+  crowhandler:
     container_name: image_handler
     build: ./
     depends_on:
