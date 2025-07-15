@@ -1,6 +1,6 @@
 ﻿#include <opencv2/opencv.hpp>
 #include <opencv2/dnn.hpp>
-#include <opencv2/imgproc.hpp>
+#include <opencv2/objdetect.hpp>
 
 #include "crow.h"
 #include "nlohmann/json.hpp"
@@ -132,29 +132,29 @@ Mat loadImage(const string& file_path) {
 
 void facefinder(pqxx::connection& C, const string& file_path) {
     string output_path;
-    float scale = 1.0;
-    float scoreThreshold = 0.9;
+    float scoreThreshold = 0.7;
     float nmsThreshold = 0.3;
     int topK = 5000;
 
     Mat image = loadImage(file_path);
 
-    int imageWidth = int(image.cols * scale);
-    int imageHeight = int(image.rows * scale);
-    resize(image, image, Size(imageWidth, imageHeight));
+    int thick = image.cols / 640;
+
+    int core = (image.cols / 19) | 1;
 
     Ptr<FaceDetectorYN> detector = FaceDetectorYN::create(fdmodel_path, "", Size(320, 320), scoreThreshold, nmsThreshold, topK);
 
     detector->setInputSize(image.size());
 
-    // Detect faces
     Mat faces;
     detector->detect(image, faces);
     
-    int thick = 3;
 
     for (int i = 0; i < faces.rows; i++) {
-        rectangle(image, Rect2i(int(faces.at<float>(i, 0)), int(faces.at<float>(i, 1)), int(faces.at<float>(i, 2)), int(faces.at<float>(i, 3))), Scalar(255, 0, 0), thick);
+        Rect box(faces.at<float>(i, 0), faces.at<float>(i, 1), faces.at<float>(i, 2), faces.at<float>(i, 3));
+        Mat faceROI = image(box);
+        rectangle(image, box, Scalar(0, 255, 0), thick);
+        GaussianBlur(faceROI, faceROI, Size(core, core), 0);
     }
 
     fs::path input_path(file_path);
