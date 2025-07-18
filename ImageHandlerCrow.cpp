@@ -33,14 +33,14 @@ bool loadModel() {
 std::vector <char> read_binary_file(const std::string& filename) {
     std::ifstream file(filename, std::ios::binary | std::ios::ate);
     if (!file.is_open()) {
-        throw std::runtime_error("Could not open file: " + filename);
+        throw std::runtime_error("Ошибка при открытии файла: " + filename);
     }
     std::streamsize size = file.tellg();
     file.seekg(0, std::ios::beg);
 
     std::vector<char> buffer(size);
     if (!file.read(buffer.data(), size)) {
-        throw std::runtime_error("Could not read file: " + filename);
+        throw std::runtime_error("Ошибка при чтении файла: " + filename);
     }
     return buffer;
 
@@ -78,7 +78,6 @@ string saveImage(const Mat& image, const string& filename, const string& operati
     fs::path newimg_dir = "newimg";
     fs::path output_path = newimg_dir / filename;
 
-    // Добавляем префикс с названием операции, если он указан
     string final_filename;
     if (!operation_name.empty()) {
         fs::path filename_path(filename);
@@ -93,7 +92,7 @@ string saveImage(const Mat& image, const string& filename, const string& operati
     }
     catch (const cv::Exception& ex) {
         cerr << "Ошибка сохранения изображения: " << ex.what() << endl;
-        throw; //Выкидываем исключение для Crow
+        throw; 
     }
 }
 
@@ -110,7 +109,7 @@ Mat loadImage(const string& file_path) {
 
 void facefinder(pqxx::connection& C, const string& file_path) {
     string output_path;
-    float scoreThreshold = 0.7;
+    float scoreThreshold = 0.7; //порог уверенности, от 0,1 до 1. выбирать в зависимости от изображений. В данном случае норм от 0.6 до 0.8
     float nmsThreshold = 0.3;
     int topK = 5000;
 
@@ -126,7 +125,7 @@ void facefinder(pqxx::connection& C, const string& file_path) {
 
     if (image.rows >= 1920){
         core = (image.rows / 19) | 1;
-    }else core = 101;
+    }else core = 101; //101 достаточно для изображения ХХХХх1920, а значит и для меньших изображений
 
     Ptr<FaceDetectorYN> detector = FaceDetectorYN::create(fdmodel_path, "", Size(320, 320), scoreThreshold, nmsThreshold, topK);
 
@@ -151,7 +150,7 @@ void facefinder(pqxx::connection& C, const string& file_path) {
     std::vector <char> result = read_binary_file(output_path);
 
     try {
-        inserting(C, "finding", source, file_path, {}, {}, result, output_path, 0, 0);
+        inserting(C, "finding", source, file_path, {}, {}, result, output_path, 0, faces.rows);
     }
     catch (const std::exception& e) {
         throw;
